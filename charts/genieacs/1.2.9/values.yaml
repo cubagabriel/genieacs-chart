@@ -1,4 +1,5 @@
 genieacs:
+  replicaCount: 3
   image:
     repository: gcuba/genieacs
     pullPolicy: IfNotPresent
@@ -33,6 +34,7 @@ genieacs:
     GENIEACS_MONGODB_CONNECTION_URL: "mongodb://genieacs:genieacspassword123@genieacs-mongodb:27017/genieacs"
 
 mongodb:
+  architecture: replicaset
   replicaCount: 2
   auth:
     enabled: true
@@ -43,10 +45,6 @@ mongodb:
     databases: [genieacs] #Default genieacs db
     replicaSetKey: ""
     existingSecret: "genieacs-mongo" #mongo-secret.yaml file
-  replicaSet:
-    enabled: true
-    replicas:
-      secondary: 2
   persistence:
     enabled: true
     existingClaim: ""
