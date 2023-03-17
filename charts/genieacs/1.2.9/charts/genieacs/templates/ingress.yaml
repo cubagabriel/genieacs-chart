@@ -31,7 +31,7 @@ spec:
     {{- end }}
   {{- end }}
   rules:
-    - host: {{ .Values.ingress.ui | quote }}
+    - host: {{ .Values.ingress.ui.host | quote }}
       http:
         paths:
           - path: {{ .Values.ingress.ui.path }}
@@ -41,7 +41,7 @@ spec:
                 name: genieacs-http
                 port:
                   number: {{ .Values.service_http.port_http }}
-    - host: {{ .Values.ingress.nbi | quote }}
+    - host: {{ .Values.ingress.nbi.host | quote }}
       http:
         paths:
           - path: {{ .Values.ingress.nbi.path }}
