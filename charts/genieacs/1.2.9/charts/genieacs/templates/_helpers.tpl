@@ -35,7 +35,6 @@ Common labels
 */}}
 {{- define "genieacs.labels" -}}
 helm.sh/chart: {{ include "genieacs.chart" . }}
-{{ include "genieacs.selectorLabels" . }}
 {{- if .Chart.AppVersion }}
 app.kubernetes.io/version: {{ .Chart.AppVersion | quote }}
 {{- end }}

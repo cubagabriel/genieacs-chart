@@ -13,7 +13,7 @@ genieacs:
     annotations: {}
 #      kubernetes.io/tls-acme: "true"
     hosts:
-      - host: genieacs-ui.172.21.248.213.nip.io
+      - host: genieacs-ui.10.100.41.27.nip.io
         paths:
           - path: /
             pathType: ImplementationSpecific
@@ -27,7 +27,7 @@ genieacs:
     annotations: {}
 #      kubernetes.io/tls-acme: "true"
     hosts:
-      - host: genieacs-nbi.172.21.248.213.nip.io
+      - host: genieacs-nbi.10.100.41.27.nip.io
         paths:
           - path: /
             pathType: ImplementationSpecific
