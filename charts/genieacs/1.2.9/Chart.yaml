@@ -3,7 +3,7 @@ name: genieacs
 description: A Helm chart for genieacs
 type: application
 version: 1.2.9
-appVersion: 1.2.8
+appVersion: 1.2.9
 
 dependencies:
   - name: mongodb
