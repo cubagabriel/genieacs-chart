@@ -1,5 +1,5 @@
 genieacs:
-  replicaCount: 3
+  replicaCount: 2
   image:
     repository: gcuba/genieacs
     pullPolicy: IfNotPresent
@@ -34,8 +34,7 @@ genieacs:
     GENIEACS_MONGODB_CONNECTION_URL: "mongodb://genieacs:genieacspassword123@genieacs-mongodb:27017/genieacs"
 
 mongodb:
-  architecture: replicaset
-  replicaCount: 2
+  replicaCount: 1
   auth:
     enabled: true
     rootUser: root
