@@ -1,0 +1,67 @@
+genieacs:
+  image:
+    repository: gcuba/genieacs
+    pullPolicy: IfNotPresent
+    tag: "test"
+  autoscaling:
+    enabled: false
+  serviceAccount:
+    create: false
+  ingress-ui:
+    enabled: true
+    className: "nginx"
+    annotations: {}
+#      kubernetes.io/tls-acme: "true"
+    hosts:
+      - host: genieacs-ui.172.21.248.213.nip.io
+        paths:
+          - path: /
+            pathType: ImplementationSpecific
+    tls: []
+    #  - secretName: chart-example-tls
+    #    hosts:
+    #      - chart-example.local
+  ingress-nbi:
+    enabled: true
+    className: "nginx"
+    annotations: {}
+#      kubernetes.io/tls-acme: "true"
+    hosts:
+      - host: genieacs-nbi.172.21.248.213.nip.io
+        paths:
+          - path: /
+            pathType: ImplementationSpecific
+    tls: []
+    #  - secretName: chart-example-tls
+    #    hosts:
+    #      - chart-example.local
+  resources: # Modify according to your size
+    requests:
+      cpu: 500m
+      memory: 2Gi
+  env:
+    GENIEACS_UI_JWT_SECRET: changeme
+    GENIEACS_MONGODB_CONNECTION_URL: "mongodb://genieacs:genieacspassword123@genieacs-mongodb:27017/genieacs"
+
+mongodb:
+  replicaCount: 2
+  auth:
+    enabled: true
+    rootUser: root
+    rootPassword: ""
+    usernames: [genieacs]
+    passwords: []
+    databases: [genieacs] #Default genieacs db
+    replicaSetKey: ""
+    existingSecret: "genieacs-mongo" #mongo-secret.yaml file
+  replicaSet:
+    enabled: true
+    replicas:
+      secondary: 2
+  persistence:
+    enabled: true
+    existingClaim: ""
+    storageClass: "" # default provisioner, check which provisioner you have available
+    accessModes:
+      - ReadWriteOnce
+    size: 10Gi # Modify with expected usage

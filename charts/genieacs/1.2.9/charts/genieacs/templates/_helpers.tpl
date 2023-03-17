@@ -43,11 +43,35 @@ app.kubernetes.io/managed-by: {{ .Release.Service }}
 {{- end }}
 
 {{/*
-Selector labels
+cwmp Selector labels
 */}}
-{{- define "genieacs.selectorLabels" -}}
-app.kubernetes.io/name: {{ include "genieacs.name" . }}
-app.kubernetes.io/instance: {{ .Release.Name }}
+{{- define "genieacs-cwmp.selectorLabels" -}}
+app.kubernetes.io/name: {{ include "genieacs.name" . }}-cwmp
+app.kubernetes.io/instance: {{ .Release.Name }}-cwmp
+{{- end }}
+
+{{/*
+fs Selector labels
+*/}}
+{{- define "genieacs-fs.selectorLabels" -}}
+app.kubernetes.io/name: {{ include "genieacs.name" . }}-fs
+app.kubernetes.io/instance: {{ .Release.Name }}-fs
+{{- end }}
+
+{{/*
+ui Selector labels
+*/}}
+{{- define "genieacs-ui.selectorLabels" -}}
+app.kubernetes.io/name: {{ include "genieacs.name" . }}-ui
+app.kubernetes.io/instance: {{ .Release.Name }}-ui
+{{- end }}
+
+{{/*
+nbi Selector labels
+*/}}
+{{- define "genieacs-nbi.selectorLabels" -}}
+app.kubernetes.io/name: {{ include "genieacs.name" . }}-nbi
+app.kubernetes.io/instance: {{ .Release.Name }}-nbi
 {{- end }}
 
 {{/*

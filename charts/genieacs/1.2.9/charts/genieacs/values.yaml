@@ -1,0 +1,37 @@
+image:
+  repository: drumsergio/genieacs
+  pullPolicy: IfNotPresent
+  tag: "latest"
+
+autoscaling:
+  enabled: false
+serviceAccount:
+  create: false
+
+service_http:
+  type: ClusterIP
+  port_http: 3000
+service_cwmp:
+  type: LoadBalancer
+  port_cwmp: 7547
+service_nbi:
+  type: ClusterIP
+  port_nbi: 7557
+service_fs:
+  type: LoadBalancer
+  port_fs: 7567
+
+resources: # Modify according to your size
+  requests:
+    cpu: 500m
+    memory: 2Gi
+
+env:
+  GENIEACS_NBI_PORT: 7557
+  GENIEACS_CWMP_PORT: 7547
+  GENIEACS_FS_PORT: 7567
+  GENIEACS_UI_PORT: 3000
+  GENIEACS_UI_JWT_SECRET: changeme
+  GENIEACS_DEBUG_FILE: /var/log/genieacs/genieacs-debug.yaml
+  GENIEACS_EXT_DIR: /opt/genieacs/ext
+  GENIEACS_MONGODB_CONNECTION_URL: mongodb://mongo/genieacs
