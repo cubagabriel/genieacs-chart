@@ -7,7 +7,7 @@ genieacs:
     enabled: false
   serviceAccount:
     create: false
-  ingress-ui:
+  ingress_ui:
     enabled: true
     className: "nginx"
     annotations: {}
@@ -21,7 +21,7 @@ genieacs:
     #  - secretName: chart-example-tls
     #    hosts:
     #      - chart-example.local
-  ingress-nbi:
+  ingress_nbi:
     enabled: true
     className: "nginx"
     annotations: {}

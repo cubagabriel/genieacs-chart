@@ -31,7 +31,7 @@ spec:
     {{- end }}
   {{- end }}
   rules:
-    {{- range .Values.ingress-ui.hosts }}
+    {{- range .Values.ingress_ui.hosts }}
     - host: {{ .host | quote }}
       http:
         paths:
@@ -45,7 +45,7 @@ spec:
                   number: {{ .Values.service_http.port_http }}
           {{- end }}
     {{- end }}
-    {{- range .Values.ingress-nbi.hosts }}
+    {{- range .Values.ingress_nbi.hosts }}
     - host: {{ .host | quote }}
       http:
         paths:
