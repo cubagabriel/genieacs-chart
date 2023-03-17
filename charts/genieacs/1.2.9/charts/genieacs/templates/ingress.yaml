@@ -31,32 +31,24 @@ spec:
     {{- end }}
   {{- end }}
   rules:
-    {{- range .Values.ingress_ui.hosts }}
-    - host: {{ .host | quote }}
+    - host: {{ .Values.ingress.ui | quote }}
       http:
         paths:
-          {{- range .paths }}
-          - path: {{ .path }}
-            pathType: {{ .pathType }}
+          - path: {{ .Values.ingress.ui.path }}
+            pathType: {{ .Values.ingress.ui.pathType }}
             backend:
               service:
                 name: genieacs-http
                 port:
                   number: {{ .Values.service_http.port_http }}
-          {{- end }}
-    {{- end }}
-    {{- range .Values.ingress_nbi.hosts }}
-    - host: {{ .host | quote }}
+    - host: {{ .Values.ingress.nbi | quote }}
       http:
         paths:
-          {{- range .paths }}
-          - path: {{ .path }}
-            pathType: {{ .pathType }}
+          - path: {{ .Values.ingress.nbi.path }}
+            pathType: {{ .Values.ingress.nbi.pathType }}
             backend:
               service:
                 name: genieacs-nbi
                 port:
                   number: {{ .Values.service_nbi.port_nbi }}
-          {{- end }}
-    {{- end }}
 {{- end }}

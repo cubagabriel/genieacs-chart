@@ -7,30 +7,19 @@ genieacs:
     enabled: false
   serviceAccount:
     create: false
-  ingress_ui:
+  ingress:
     enabled: true
     className: "nginx"
     annotations: {}
 #      kubernetes.io/tls-acme: "true"
-    hosts:
-      - host: genieacs-ui.10.100.41.27.nip.io
-        paths:
-          - path: /
-            pathType: ImplementationSpecific
-    tls: []
-    #  - secretName: chart-example-tls
-    #    hosts:
-    #      - chart-example.local
-  ingress_nbi:
-    enabled: true
-    className: "nginx"
-    annotations: {}
-#      kubernetes.io/tls-acme: "true"
-    hosts:
-      - host: genieacs-nbi.10.100.41.27.nip.io
-        paths:
-          - path: /
-            pathType: ImplementationSpecific
+    ui:
+      host: genieacs-ui.10.100.41.27.nip.io
+      path: /
+      pathType: ImplementationSpecific
+    nbi:
+      host: genieacs-nbi.10.100.41.27.nip.io
+      path: /
+      pathType: ImplementationSpecific
     tls: []
     #  - secretName: chart-example-tls
     #    hosts:
