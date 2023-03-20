@@ -4,9 +4,3 @@ description: A Helm chart for genieacs
 type: application
 version: 1.2.9
 appVersion: 1.2.9
-
-dependencies:
-  - name: mongodb
-    version: "10.31.4"
-    repository: "https://charts.bitnami.com/bitnami"
-

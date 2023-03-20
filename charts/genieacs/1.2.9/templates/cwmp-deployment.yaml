@@ -1,7 +1,7 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: {{ include "genieacs.fullname" . }}-ui
+  name: {{ include "genieacs.fullname" . }}-cwmp
   labels:
     {{- include "genieacs.labels" . | nindent 4 }}
 spec:
@@ -10,7 +10,7 @@ spec:
   {{- end }}
   selector:
     matchLabels:
-      {{- include "genieacs-ui.selectorLabels" . | nindent 6 }}
+      {{- include "genieacs-cwmp.selectorLabels" . | nindent 6 }}
   template:
     metadata:
       {{- with .Values.podAnnotations }}
@@ -18,7 +18,7 @@ spec:
         {{- toYaml . | nindent 8 }}
       {{- end }}
       labels:
-        {{- include "genieacs-ui.selectorLabels" . | nindent 8 }}
+        {{- include "genieacs-cwmp.selectorLabels" . | nindent 8 }}
     spec:
       {{- with .Values.imagePullSecrets }}
       imagePullSecrets:
@@ -29,7 +29,7 @@ spec:
         {{- toYaml .Values.podSecurityContext | nindent 8 }}
       containers:
         - name: {{ .Chart.Name }}
-          command: ["/opt/genieacs/dist/bin/genieacs-ui"]
+          command: ["/opt/genieacs/dist/bin/genieacs-cwmp"]
           securityContext:
             {{- toYaml .Values.securityContext | nindent 12 }}
           image: "{{ .Values.image.repository }}:{{ .Values.image.tag | default .Chart.AppVersion }}"
@@ -53,6 +53,11 @@ spec:
                   name: {{ $secret }}
                   key: {{ $key | quote }}
             {{- end }}
+            - name: GENIEACS_MONGODB_CONNECTION_URL
+              valueFrom:
+                secretKeyRef:
+                  name: genieacs-mongodb-genieacs-genieacs
+                  key: connectionString.standardSrv
           {{- end }}
       {{- with .Values.nodeSelector }}
       nodeSelector:

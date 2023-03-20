@@ -1,53 +1,56 @@
-genieacs:
-  replicaCount: 2
-  image:
-    repository: gcuba/genieacs
-    pullPolicy: IfNotPresent
-    tag: "test"
-  autoscaling:
-    enabled: false
-  serviceAccount:
-    create: false
-  ingress:
-    enabled: true
-    className: "nginx"
-    annotations: {}
-#      kubernetes.io/tls-acme: "true"
-    ui:
-      host: genieacs-ui.10.100.41.27.nip.io
-      path: /
-      pathType: ImplementationSpecific
-    nbi:
-      host: genieacs-nbi.10.100.41.27.nip.io
-      path: /
-      pathType: ImplementationSpecific
-    tls: []
-    #  - secretName: chart-example-tls
-    #    hosts:
-    #      - chart-example.local
-  resources: # Modify according to your size
-    requests:
-      cpu: 500m
-      memory: 2Gi
-  env:
-    GENIEACS_UI_JWT_SECRET: changeme
-    GENIEACS_MONGODB_CONNECTION_URL: "mongodb://genieacs:genieacspassword123@genieacs-mongodb:27017/genieacs"
-
-mongodb:
-  replicaCount: 1
-  auth:
-    enabled: true
-    rootUser: root
-    rootPassword: ""
-    usernames: [genieacs]
-    passwords: []
-    databases: [genieacs] #Default genieacs db
-    replicaSetKey: ""
-    existingSecret: "genieacs-mongo" #mongo-secret.yaml file
-  persistence:
-    enabled: true
-    existingClaim: ""
-    storageClass: "" # default provisioner, check which provisioner you have available
-    accessModes:
-      - ReadWriteOnce
-    size: 10Gi # Modify with expected usage
+replicaCount: 2
+image:
+  repository: gcuba/genieacs
+  pullPolicy: IfNotPresent
+  tag: "test"
+autoscaling:
+  enabled: false
+serviceAccount:
+  create: false
+ingress:
+  enabled: true
+  className: "nginx"
+  annotations: {}
+#     kubernetes.io/tls-acme: "true"
+  ui:
+    host: genieacs-ui.10.100.41.27.nip.io
+    path: /
+    pathType: ImplementationSpecific
+  nbi:
+    host: genieacs-nbi.10.100.41.27.nip.io
+    path: /
+    pathType: ImplementationSpecific
+  tls: []
+  #  - secretName: chart-example-tls
+  #    hosts:
+  #      - chart-example.local
+resources: # Modify according to your size
+  requests:
+    cpu: 250m
+    memory: 1Gi
+env:
+  GENIEACS_NBI_PORT: 7557
+  GENIEACS_CWMP_PORT: 7547
+  GENIEACS_FS_PORT: 7567
+  GENIEACS_UI_PORT: 3000
+  GENIEACS_DEBUG_FILE: /var/log/genieacs/genieacs-debug.yaml
+  GENIEACS_EXT_DIR: /opt/genieacs/ext
+  GENIEACS_CWMP_LOG_FILE: /var/log/genieacs/genieacs-cwmp.log
+  GENIEACS_NBI_LOG_FILE: /var/log/genieacs/genieacs-nbi.log
+  GENIEACS_FS_LOG_FILE: /var/log/genieacs/genieacs-fs.log
+  GENIEACS_UI_LOG_FILE: /var/log/genieacs/genieacs-ui.log
+envSecrets:
+  key: GENIEACS_UI_JWT_SECRET
+  secret: genieacs-secret
+service_http:
+  type: ClusterIP
+  port_http: 3000
+service_cwmp:
+  type: LoadBalancer
+  port_cwmp: 7547
+service_nbi:
+  type: ClusterIP
+  port_nbi: 7557
+service_fs:
+  type: LoadBalancer
+  port_fs: 7567
