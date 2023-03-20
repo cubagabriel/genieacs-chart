@@ -4,7 +4,7 @@ kind: MongoDBCommunity
 metadata:
   name: genieacs-mongodb
   annotations:
-    "helm.sh/hook": pre-install, pre-upgrade
+    "helm.sh/hook": pre-install, pre-upgrade, post-delete
     "helm.sh/hook-weight": "1"
 spec:
   members: 2
