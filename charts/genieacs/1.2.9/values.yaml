@@ -40,8 +40,7 @@ env:
   GENIEACS_FS_LOG_FILE: /var/log/genieacs/genieacs-fs.log
   GENIEACS_UI_LOG_FILE: /var/log/genieacs/genieacs-ui.log
 envSecrets:
-  key: GENIEACS_UI_JWT_SECRET
-  secret: genieacs-secret
+  GENIEACS_UI_JWT_SECRET: genieacs-secret
 service_http:
   type: ClusterIP
   port_http: 3000
