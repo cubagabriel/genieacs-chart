@@ -4,7 +4,7 @@ kind: MongoDBCommunity
 metadata:
   name: genieacs-mongodb
   annotations:
-    "helm.sh/hook": pre-install, pre-upgrade, post-delete
+    "helm.sh/hook": pre-install,pre-upgrade,post-delete
     "helm.sh/hook-weight": "1"
 spec:
   members: 2
@@ -21,8 +21,6 @@ spec:
         name: genieacs-secret
         key: mongodb-password
       roles:
-        - name: clusterAdmin
-          db: admin
-        - name: userAdminAnyDatabase
-          db: admin
+        - name: dbOwner
+          db: genieacs
       scramCredentialsSecretName: genieacs
