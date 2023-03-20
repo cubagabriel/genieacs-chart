@@ -23,6 +23,9 @@ metadata:
     {{- include "genieacs.labels" . | nindent 4 }}
 spec:
   type: {{ .Values.service_cwmp.type }}
+  {{- if not .Values.service_cwmp.load_balancer_IP }}
+  loadBalancerIP: {{ .Values.service_cwmp.load_balancer_IP }}
+  {{- end }}
   ports:
     - port: {{ .Values.service_cwmp.port_cwmp }}
       targetPort: 7547
@@ -57,6 +60,7 @@ metadata:
     {{- include "genieacs.labels" . | nindent 4 }}
 spec:
   type: {{ .Values.service_fs.type }}
+  loadBalancerIP: {{ .Values.service_fs.load_balancer_IP }}
   ports:
     - port: {{ .Values.service_fs.port_fs }}
       targetPort: 7567

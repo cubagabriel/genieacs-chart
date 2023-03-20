@@ -39,6 +39,7 @@ env:
   GENIEACS_NBI_LOG_FILE: /var/log/genieacs/genieacs-nbi.log
   GENIEACS_FS_LOG_FILE: /var/log/genieacs/genieacs-fs.log
   GENIEACS_UI_LOG_FILE: /var/log/genieacs/genieacs-ui.log
+  GENIEACS_FS_URL_PREFIX: "http://<changeme>:7567/"
 envSecrets:
   GENIEACS_UI_JWT_SECRET: genieacs-secret
 service_http:
@@ -47,9 +48,11 @@ service_http:
 service_cwmp:
   type: LoadBalancer
   port_cwmp: 7547
+  loadBalancerIP: null
 service_nbi:
   type: ClusterIP
   port_nbi: 7557
 service_fs:
   type: LoadBalancer
   port_fs: 7567
+  load_balancer_IP: <changeme>
