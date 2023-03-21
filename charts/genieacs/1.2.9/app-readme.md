@@ -14,16 +14,17 @@ Prerequisites
 
 1. An ingress controller running in your cluster (e.g. ingress-nginx).
 2. An external LoadBalancer or metallb as L4 LoadBalancer controller.
-3. At least 2 available LoadBalancer IP addresses
+3. At least 2 available LoadBalancer IP addresses for (CWMP and FS)
 4. Mongodb community operator, which will create the mongo database for persistance
 5. Optionally a genieACS tester running outside the cluster.
 
 Installation
 -----------------
 
-Fill the form with the appropiate values and click on install.
+Just fill the form with the appropriate values and click on **install**.
 
-After the installation you will see 4 deployments and 4 services running.
+After the installation you will see 4 deployments and 4 services running. 
+UI and NBI will be exposed through an ingress, CWMP and FS through Load Balancer IP addresses.
 
 In order to test the installation, perform the following:
 
