@@ -1,8 +1,8 @@
 replicaCount: 2
 image:
-  repository: gcuba/genieacs
+  repository: gcr.io/whitestack/whitecruiser/genieacs
   pullPolicy: IfNotPresent
-  tag: "test"
+  tag: "poc-1.2.9"
 autoscaling:
   enabled: false
 serviceAccount:
