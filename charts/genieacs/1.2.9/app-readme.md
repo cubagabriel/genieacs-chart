@@ -22,8 +22,7 @@ Prerequisites
 Pre-installation
 -----------------
 
-You can install both **Mongodb community operator** (mandatory) and **OpenEBS** (optional) from the Marketplace with  
-few changes to default values.
+You can install both **Mongodb community operator** (mandatory) and **OpenEBS** (optional) from the Marketplace with few changes to default values.
 
 For **Mongodb community operator**, set `operator.watchNamespace: '*'` in YAML values.
 

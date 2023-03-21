@@ -13,11 +13,11 @@ ingress:
   annotations: {}
 #     kubernetes.io/tls-acme: "true"
   ui:
-    host: genieacs-ui.10.100.41.27.nip.io
+    host: genieacs-ui.example.com
     path: /
     pathType: ImplementationSpecific
   nbi:
-    host: genieacs-nbi.10.100.41.27.nip.io
+    host: genieacs-nbi.example.com
     path: /
     pathType: ImplementationSpecific
   tls: []
