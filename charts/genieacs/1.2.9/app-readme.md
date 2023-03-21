@@ -16,7 +16,18 @@ Prerequisites
 2. An external LoadBalancer or metallb as L4 LoadBalancer controller.
 3. At least 2 available LoadBalancer IP addresses for CWMP and FS services
 4. Mongodb community operator, which will create the mongo database for persistance
-5. Optionally a genieACS tester running outside the cluster.
+5. At least 1 storage provider (e.g. OpenEBS) and a default Storage Class.
+6. Optionally a genieACS tester running outside the cluster.
+
+Pre-installation
+-----------------
+
+You can install both **Mongodb community operator** (mandatory) and **OpenEBS** (optional) from the Marketplace with  
+few changes to default values.
+
+For **Mongodb community operator**, set `operator.watchNamespace: '*'` in YAML values.
+
+For **OpenEBS**, in **NDM Sparse Disk Settings**, disable `Create a cStor Pool on Sparse Disks` checkbox.
 
 Installation
 -----------------

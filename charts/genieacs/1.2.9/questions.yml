@@ -20,7 +20,7 @@ questions:
     IP address to be allocated by LoadBalancer for genieACS FS service.
 - variable: service_cwmp.load_balancer_IP
   group: CWMP
-  default: "false"
+  default: null
   description: > 
     IP address to be allocated by LoadBalancer for genieACS CWMP service. If not specified, LoadBalancer controller will 
     assign randomly (if available)
